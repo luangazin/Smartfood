@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<!-- Master -->
+
+	<definition name="simpleLayout" template="/WEB-INF/pages/template/simpleLayout.jsp">
+		<put-attribute name="title" value="Smart Food" />
+		<put-attribute name="header" value="/WEB-INF/pages/template/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/pages/template/footer.jsp" />
+		<put-list-attribute name="jsList">
+			<add-attribute value="/resources/bootstrap/js/jquery.min.js" />
+			<add-attribute value="/resources/bootstrap/js/bootstrap.min.js" />
+			<add-attribute value="/resources/bootstrap/js/bootstrap-notify.js" />
+			<add-attribute value="/resources/js/login.js" />
+		</put-list-attribute>
+
+		<put-list-attribute name="cssList">
+			<add-attribute value="/resources/bootstrap/css/bootstrap.min.css" />
+			<add-attribute value="/resources/bootstrap/css/custom.css" />
+			<add-attribute value="/resources/css/simpleLayout.css"/>
+		</put-list-attribute>
+	</definition>
+
+	<definition name="loginForm" extends="baseLayout">
+		<put-attribute name="title" value="Smart Food On-line" />
+		<put-attribute name="navigation" value="" />
+		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
+		<put-attribute name="footer" value="" />
+
+
+	</definition>
+
+
+</tiles-definitions>
