@@ -36,7 +36,7 @@ import oracle.jdbc.pool.OracleDataSource;
 @ComponentScan("br.com.gazin.smartfood")
 // Enables Spring's annotations
 @EnableWebMvc
-public class Config extends WebMvcConfigurerAdapter {
+public class SpringConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public UrlBasedViewResolver setupViewResolver() {
