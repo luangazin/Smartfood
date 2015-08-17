@@ -2,34 +2,56 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
         "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-	<!-- Master -->
 
-	<definition name="simpleLayout" template="/WEB-INF/pages/template/simpleLayout.jsp">
+	<!-- Base Layout - Used in all system where the user is logged. -->
+	<definition name="baseLayout" template="/WEB-INF/pages/template/base/baseLayout.jsp">
 		<put-attribute name="title" value="Smart Food" />
-		<put-attribute name="header" value="/WEB-INF/pages/template/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/pages/template/base/header.jsp" />
 		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/pages/template/footer.jsp" />
-		<put-list-attribute name="jsList">
-			<add-attribute value="/resources/bootstrap/js/jquery.min.js" />
+		<put-attribute name="footer" value="/WEB-INF/pages/template/base/footer.jsp" />
+		
+		<put-list-attribute name="jsList" >
+			<add-attribute value="/resources/bootstrap/js/jquery-1.11.3.min.js" />
 			<add-attribute value="/resources/bootstrap/js/bootstrap.min.js" />
 			<add-attribute value="/resources/bootstrap/js/bootstrap-notify.js" />
-			<add-attribute value="/resources/js/login.js" />
 		</put-list-attribute>
 
-		<put-list-attribute name="cssList">
+		<put-list-attribute name="cssList" >
 			<add-attribute value="/resources/bootstrap/css/bootstrap.min.css" />
 			<add-attribute value="/resources/bootstrap/css/custom.css" />
-			<add-attribute value="/resources/css/simpleLayout.css"/>
+			<add-attribute value="/resources/pages/css/cssLayout.css" />
 		</put-list-attribute>
 	</definition>
+	
+	<!-- ExternalLayout - Used where the user is not logged -->
+		<definition name="externalLayout" template="/WEB-INF/pages/template/external/externalLayout.jsp">
+		<put-attribute name="title" value="Smart Food" />
+		<put-attribute name="header" value="/WEB-INF/pages/template/external/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/pages/template/external/footer.jsp" />
+		
+		<put-list-attribute name="jsList">
+			<add-attribute value="/resources/bootstrap/js/jquery-1.11.3.min.js" />
+			<add-attribute value="/resources/bootstrap/js/bootstrap.min.js" />
+			<add-attribute value="/resources/bootstrap/js/bootstrap-notify.js" />
+		</put-list-attribute>
 
-	<definition name="loginForm" extends="baseLayout">
+		<put-list-attribute name="cssList" >
+			<add-attribute value="/resources/bootstrap/css/bootstrap.min.css" />
+			<add-attribute value="/resources/bootstrap/css/custom.css" />
+			<add-attribute value="/resources/bootstrap/css/animate.css" />
+			<add-attribute value="/resources/template/css/cssLayout.css" />
+		</put-list-attribute>
+	</definition>
+	
+	<!-- PAGES DEFINITIONS -->
+	<definition name="loginPage" extends="externalLayout">
 		<put-attribute name="title" value="Smart Food On-line" />
-		<put-attribute name="navigation" value="" />
 		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
-		<put-attribute name="footer" value="" />
-
-
+		
+		<put-list-attribute name="jsList" inherit="true">
+			<add-attribute value="/resources/pages/js/login.js" />
+		</put-list-attribute>	
 	</definition>
 
 

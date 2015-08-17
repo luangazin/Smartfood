@@ -22,13 +22,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/main")
 	public String main() {
-		// this.runMongodb();
-		// return PageName.LOGIN_PAGE;
-		User user = getUserDAO.getUser(1L);
-		System.out.println("ID: " + user.getId());
-		System.out.println("User: " + user.getUsername());
-		System.out.println("PW: " + user.getPassword());
-		return PageName.MAIN_PAGE;
+		return PageName.LOGIN_PAGE;
 	}
 
 	@RequestMapping(value = "/authentic", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
