@@ -1,10 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8"
-	contentType="text/html;charset=utf-8"%>
+	contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras"
-	prefix="tilesx"%>
+<%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles-extras"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>	
 
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
@@ -13,6 +13,7 @@
 
 
 		<div class="container">
+		
 			<div id="loginbox" style="margin-top: 50px;"
 				class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 				<div class="panel panel-primary">
@@ -59,11 +60,10 @@
 
 								<div class="col-sm-12 controls">
 									<button onclick="login();" form="loginform" class="btn btn-success">
-										<span class="glyphicon glyphicon-ok"></span> Login
+										<span class="glyphicon glyphicon-ok"></span> <spring:message code="login.loginText"/> 
 									</button>
 									<button id="btFace" class="btn btn-primary" form="akj">
-										<span class="glyphicon glyphicon-user"></span> Login with
-										Facebook
+										<span class="glyphicon glyphicon-user"></span> <spring:message code="login.loginFacebook"/> 
 									</button>
 								</div>
 							</div>

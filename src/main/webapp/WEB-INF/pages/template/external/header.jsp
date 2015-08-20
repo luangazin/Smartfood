@@ -1,3 +1,5 @@
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <div id="menuBar">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -9,7 +11,15 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Smartfood</a>
+
+				<!-- 				<a class="navbar-brand" href="#">Smartfood</a> -->
+				<div class="navbar-brand">
+					<spring:message code="hello.message" />
+				</div>
+				<div>
+					<a href="<spring:url value="/login/main?locale=en_US"/>"><spring:message	code="locale.english" /></a>|
+					<a href="<spring:url value="/login/main?locale=pt_BR"/>"><spring:message	code="locale.portuguese" /></a>
+				</div>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
