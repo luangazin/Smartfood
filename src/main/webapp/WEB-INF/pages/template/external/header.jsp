@@ -16,10 +16,9 @@
 				<div class="navbar-brand">
 					<spring:message code="hello.message" />
 				</div>
-				<div>
-					<a href="<spring:url value="/login/main?locale=en_US"/>"><spring:message	code="locale.english" /></a>|
-					<a href="<spring:url value="/login/main?locale=pt_BR"/>"><spring:message	code="locale.portuguese" /></a>
-				</div>
+
+				<spring:message code="locale.portuguese" var="portuguese" />
+				<spring:message code="locale.english" var="english" />
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -36,7 +35,18 @@
 								onClick="$('#loginbox').hide(); $('#signupbox').show()"></span>
 						</span>
 					</a></li>
+
 				</ul>
+			</div>
+			<div>
+				<div style="text-align: right;">
+					<a href="<spring:url value="/login/main?language=en_US"/>"> <img
+						title="${english}"
+						src="<spring:url value="/resources/img/usa_24x24.png"/>" /></a> <a
+						href="<spring:url value="/login/main?language=pt_BR"/>"> <img
+						title="${portuguese}"
+						src="<spring:url value="/resources/img/brazil_24x24.png"/>" /></a>
+				</div>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>

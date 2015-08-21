@@ -15,16 +15,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
@@ -94,7 +94,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 	public ReloadableResourceBundleMessageSource getMessageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("/WEB-INF/messages");
-		messageSource.setDefaultEncoding("UTF-8");
+		//messageSource.setDefaultEncoding("UTF-8"); i do not know why, but this does not work.
 		messageSource.setUseCodeAsDefaultMessage(true);
 		return messageSource;
 	}
@@ -102,7 +102,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 	@Bean(name = "localeResolver")
 	public SessionLocaleResolver getCookieLocaleResolver() {
 		SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
-		//sessionLocaleResolver.setDefaultLocale(Locale.US);
+		sessionLocaleResolver.setDefaultLocale(new Locale("pt","BR"));
 		return sessionLocaleResolver;
 	}
 
@@ -115,7 +115,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(getLocaleChangeInterceptor());
+		registry.addInterceptor(this.getLocaleChangeInterceptor());
 	}
 
 	@Override

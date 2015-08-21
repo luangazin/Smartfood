@@ -8,8 +8,28 @@
 	<name>Smartfood</name>
 
 	<properties>
+		<project.theme.name>default</project.theme.name>
+		<project.resources.build.folder>
+			${project.build.directory}/temp-resources/${project.theme.name}/
+		</project.resources.build.folder>
+		<version>${project.version}</version>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 		<spring.version>4.0.1.RELEASE</spring.version>
+
 	</properties>
+
+	<developers>
+		<developer>
+			<name>Luan Gazin</name>
+			<email>luan_gazin@yahoo.com.br</email>
+			<roles>
+				<role>Analyst</role>
+				<role>Developer</role>
+				<role>Owner</role>
+			</roles>
+		</developer>
+	</developers>
 
 	<dependencies>
 		<dependency>
@@ -134,8 +154,19 @@
 			<version>1.1.0.Final</version>
 		</dependency>
 
-
 	</dependencies>
+
+	<build>
+		<resources>
+			<!-- include main.properties -->
+
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+	</build>
 
 
 </project>

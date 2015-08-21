@@ -1,27 +1,36 @@
-<%@ page language="java" pageEncoding="UTF-8"
-	contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles-extras"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>	
+<%@ taglib prefix="tilesx"
+	uri="http://tiles.apache.org/tags-tiles-extras"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <tiles:insertDefinition name="loginPage">
 	<tiles:putAttribute name="body">
-
+	
+		<!-- IMPORT MESSAGES FROM PROPERTIES -->
+		<spring:message code="login.loginText" var="loginText" />
+		<spring:message code="login.loginFacebook" var="loginFacebook" />
+		<spring:message code="login.singnIn" var="singnIn" />
+		<spring:message code="login.userNameOrEmail" var="userNameOrEmail" />
+		<spring:message code="login.password" var="password" />
+		<spring:message code="login.forgotPassword" var="forgotPassword" />
+		<spring:message code="login.rememberMe" var="rememberMe" />
+		<spring:message code="login.dontHaveAnAccount" var="dontHaveAnAccount" />
+		<spring:message code="login.signUpHere" var="signUpHere" />
+		
 
 		<div class="container">
-		
 			<div id="loginbox" style="margin-top: 50px;"
 				class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<div class="panel-title">Sign In</div>
+						<div class="panel-title">${singnIn}</div>
 						<div
 							style="float: right; font-size: 80%; position: relative; top: -10px;">
-							<a href="#" style="color: white;">Forgot password?</a>
+							<a href="#" style="color: white;">${forgotPassword}</a>
 						</div>
 					</div>
 
@@ -30,55 +39,58 @@
 						<div style="display: none" id="login-alert"
 							class="alert alert-danger col-sm-12"></div>
 
-							<div style="margin-bottom: 25px" class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-user"></i></span> <input
-									id="login-username" type="text" class="form-control"
-									name="username" value="" placeholder="username or email">
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input id="login-username"
+								type="text" class="form-control" name="username" value=""
+								placeholder="${userNameOrEmail}">
+						</div>
+
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-lock"></i></span> <input id="login-password"
+								type="password" class="form-control" name="password"
+								placeholder="${password}">
+						</div>
+
+
+
+						<div class="input-group">
+							<div class="checkbox">
+								<label> <input id="login-remember" type="checkbox"
+									name="remember" value="1"> ${rememberMe}
+								</label>
 							</div>
+						</div>
 
-							<div style="margin-bottom: 25px" class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-lock"></i></span> <input
-									id="login-password" type="password" class="form-control"
-									name="password" placeholder="password">
+
+						<div style="margin-top: 10px" class="form-group">
+							<!-- Button -->
+
+							<div class="col-sm-12 controls">
+								<button onclick="login();" form="loginform"
+									class="btn btn-success">
+									<span class="glyphicon glyphicon-ok"></span>
+									${loginText}
+								</button>
+								<button id="btFace" class="btn btn-primary" form="akj">
+									<span class="glyphicon glyphicon-user"></span>
+									${loginFacebook}
+								</button>
 							</div>
+						</div>
 
 
-
-							<div class="input-group">
-								<div class="checkbox">
-									<label> <input id="login-remember" type="checkbox"
-										name="remember" value="1"> Remember me
-									</label>
+						<div class="form-group">
+							<div class="col-md-12 control">
+								<div
+									style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%">
+									${dontHaveAnAccount} <a href="#"
+										onClick="$('#loginbox').hide(); $('#signupbox').show()">
+										${signUpHere} </a>
 								</div>
 							</div>
-
-
-							<div style="margin-top: 10px" class="form-group">
-								<!-- Button -->
-
-								<div class="col-sm-12 controls">
-									<button onclick="login();" form="loginform" class="btn btn-success">
-										<span class="glyphicon glyphicon-ok"></span> <spring:message code="login.loginText"/> 
-									</button>
-									<button id="btFace" class="btn btn-primary" form="akj">
-										<span class="glyphicon glyphicon-user"></span> <spring:message code="login.loginFacebook"/> 
-									</button>
-								</div>
-							</div>
-
-
-							<div class="form-group">
-								<div class="col-md-12 control">
-									<div
-										style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%">
-										Don't have an account! <a href="#"
-											onClick="$('#loginbox').hide(); $('#signupbox').show()">
-											Sign Up Here </a>
-									</div>
-								</div>
-							</div>
+						</div>
 
 
 
@@ -162,7 +174,7 @@
 
 								<div class="col-md-offset-3 col-md-9">
 									<button id="btn-fbsignup" type="button" class="btn btn-primary">
-										<i class="icon-facebook"></i> Â  Sign Up with Facebook
+										<i class="icon-facebook"></i>   Sign Up with Facebook
 									</button>
 								</div>
 							</div>
