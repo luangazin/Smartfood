@@ -8,6 +8,10 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+/**
+ * @author luangazin
+ *
+ */
 public class WebInitializer implements WebApplicationInitializer {
 
 	public void onStartup(ServletContext servletContext) throws ServletException {

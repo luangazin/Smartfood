@@ -2,6 +2,10 @@ package br.com.gazin.smartfood.domain;
 
 import java.util.Date;
 
+/**
+ * @author luangazin
+ *
+ */
 public class User {
 	private Long id;
 	private String username;

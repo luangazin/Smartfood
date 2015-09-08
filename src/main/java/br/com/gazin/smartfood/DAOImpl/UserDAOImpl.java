@@ -8,10 +8,14 @@ import br.com.gazin.smartfood.DAO.UserDAO;
 import br.com.gazin.smartfood.domain.User;
 import br.com.gazin.smartfood.mapper.UserMapper;
 
+/**
+ * @author luangazin
+ *
+ */
 @Component("UserDAOImpl")
 public class UserDAOImpl implements UserDAO {
 	@Autowired
-	@Qualifier("UserPersistence")
+	@Qualifier("userPersistence")
 	public UserMapper userMapper;
 
 	@Override

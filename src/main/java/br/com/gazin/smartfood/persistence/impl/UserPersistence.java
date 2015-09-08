@@ -8,7 +8,11 @@ import org.springframework.stereotype.Repository;
 import br.com.gazin.smartfood.domain.User;
 import br.com.gazin.smartfood.mapper.UserMapper;
 
-@Repository("UserPersistence")
+/**
+ * @author luangazin
+ *
+ */
+@Repository("userPersistence")
 public class UserPersistence implements UserMapper {
 
 	private SqlSession sqlSession;

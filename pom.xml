@@ -7,18 +7,6 @@
 	<packaging>war</packaging>
 	<name>Smartfood</name>
 
-	<properties>
-		<project.theme.name>default</project.theme.name>
-		<project.resources.build.folder>
-			${project.build.directory}/temp-resources/${project.theme.name}/
-		</project.resources.build.folder>
-		<version>${project.version}</version>
-		<timestamp>${maven.build.timestamp}</timestamp>
-		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
-		<spring.version>4.0.1.RELEASE</spring.version>
-
-	</properties>
-
 	<developers>
 		<developer>
 			<name>Luan Gazin</name>
@@ -31,15 +19,30 @@
 		</developer>
 	</developers>
 
+	<properties>
+		<apache.tiles.version>3.0.5</apache.tiles.version>
+		<cglib.version>2.2.2</cglib.version>
+		<codehaus.jackson.version>1.9.7</codehaus.jackson.version>
+		<javax.servlet.version>3.0.1</javax.servlet.version>
+		<javax.validation.version>1.1.0.Final</javax.validation.version>
+		<junit.version>3.8.1</junit.version>
+		<log4j.version>1.2.16</log4j.version>
+		<jstl.version>1.2</jstl.version>
+		<org.slf4j.version>1.6.1</org.slf4j.version>
+		<org.mybatis.version>3.3.0</org.mybatis.version>
+		<spring.version>4.0.2.RELEASE</spring.version>
+		<spring.security.version>4.0.2.RELEASE</spring.security.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Spring 3 dependencies -->
+		<!-- Spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -61,74 +64,86 @@
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
-			<version>2.2.2</version>
+			<version>${cglib.version}</version>
+		</dependency>
+
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
 		</dependency>
 
 		<!-- Servlet API, JSTL -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
+			<version>${javax.servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<version>${jstl.version}</version>
 		</dependency>
 
 		<!-- Tiles -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-extras</artifactId>
-			<version>3.0.5</version>
+			<version>${apache.tiles.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-servlet</artifactId>
-			<version>3.0.5</version>
+			<version>${apache.tiles.version}</version>
 		</dependency>
 
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
+			<version>${org.slf4j.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.6.1</version>
+			<version>${org.slf4j.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
+			<version>${org.slf4j.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<version>${log4j.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<!-- JACKSON -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.7</version>
+			<version>${codehaus.jackson.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
-			<version>1.9.7</version>
+			<version>${codehaus.jackson.version}</version>
 		</dependency>
 
 		<!-- ORACLE JDBC DRIVER -->
@@ -144,14 +159,14 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
-			<version>3.3.0</version>
+			<version>${org.mybatis.version}</version>
 		</dependency>
 
 		<!-- Bean Validation -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.1.0.Final</version>
+			<version>${javax.validation.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -159,9 +174,8 @@
 	<build>
 		<resources>
 			<!-- include main.properties -->
-
 			<resource>
-				<directory>${project.basedir}/src/main/resources</directory>
+				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
 		</resources>

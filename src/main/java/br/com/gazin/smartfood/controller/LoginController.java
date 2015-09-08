@@ -13,6 +13,10 @@ import br.com.gazin.smartfood.DAO.UserDAO;
 import br.com.gazin.smartfood.domain.User;
 import br.com.gazin.smartfood.util.PageName;
 
+/**
+ * @author luangazin
+ *
+ */
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -35,5 +39,15 @@ public class LoginController {
 			model.addAttribute("msg", "true");
 			return PageName.LOGIN_PAGE;
 		}
+	}
+	
+	@RequestMapping(value="?error")
+	public String authenticFail(){
+		return PageName.LOGIN_ERROR;
+	}
+	
+	@RequestMapping(value="?logout")
+	public String logout(){
+		return PageName.LOGIN_LOGOUT;
 	}
 }

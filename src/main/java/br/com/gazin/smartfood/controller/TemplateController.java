@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.gazin.smartfood.util.PageName;
 
+/**
+ * @author luangazin
+ *
+ */
 @Controller
 @RequestMapping(value = "/main")
 public class TemplateController {

@@ -15,14 +15,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.core.Ordered;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -33,10 +33,14 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 import br.com.gazin.smartfood.mapper.UserMapper;
 import oracle.jdbc.pool.OracleDataSource;
 
+/**
+ * @author luangazin
+ *
+ */
+//Marks this class as configuration
 @Configuration
-// Marks this class as configuration
 // Specifies which package to scan
-@ComponentScan("br.com.gazin.smartfood")
+@ComponentScan("br.com.gazin.smartfood.*")
 // Enables Spring's annotations
 @EnableWebMvc
 public class SpringConfig extends WebMvcConfigurerAdapter {
@@ -66,7 +70,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 		return tilesConfigurer;
 	}
 
-	@Bean
+	@Bean(name="dataSource")
 	public DataSource getDataSource() throws SQLException {
 		OracleDataSource dataSource = new OracleDataSource();
 		dataSource.setURL("jdbc:oracle:thin:@127.0.0.1:1521:XE");
@@ -122,6 +126,12 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
+	
+	@Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        //registry.addViewController("/login/main").setViewName(PageName.LOGIN_PAGE);
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+    }
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

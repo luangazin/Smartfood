@@ -5,6 +5,10 @@ import br.com.gazin.smartfood.domain.User;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 
+/**
+ * @author luangazin
+ *
+ */
 public interface UserMapper {
 	@Results({
         @Result(property = "id", column = "id"),
