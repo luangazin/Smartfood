@@ -18,7 +18,6 @@ public class UserDAOImpl implements UserDAO {
 	@Qualifier("userPersistence")
 	public UserMapper userMapper;
 
-	@Override
 	public User getUser(Long id) {
 		return userMapper.getUser(id);
 	}

@@ -22,7 +22,6 @@ public class UserPersistence implements UserMapper {
 		sqlSession = factory.openSession();
 	}
 
-	@Override
 	public User getUser(Long id) {
 		try {
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
