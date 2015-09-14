@@ -1,6 +1,5 @@
 package br.com.gazin.smartfood.config;
 
-import java.sql.SQLException;
 import java.util.Locale;
 
 import javax.sql.DataSource;
@@ -14,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.Ordered;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -31,7 +32,6 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
 import br.com.gazin.smartfood.mapper.UserMapper;
-import oracle.jdbc.pool.OracleDataSource;
 
 /**
  * @author luangazin
@@ -43,6 +43,7 @@ import oracle.jdbc.pool.OracleDataSource;
 @ComponentScan("br.com.gazin.smartfood.*")
 // Enables Spring's annotations
 @EnableWebMvc
+@Import({ SecurityConfig.class })
 public class SpringConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
@@ -70,15 +71,15 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 		return tilesConfigurer;
 	}
 
-	@Bean(name="dataSource")
-	public DataSource getDataSource() throws SQLException {
-		OracleDataSource dataSource = new OracleDataSource();
-		dataSource.setURL("jdbc:oracle:thin:@127.0.0.1:1521:XE");
-		dataSource.setUser("COMANDA");
-		dataSource.setPassword("ROOT");
-		return dataSource;
+	@Bean(name = "dataSource")
+	public DriverManagerDataSource dataSource() {
+	    DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+	    driverManagerDataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+	    driverManagerDataSource.setUrl("jdbc:oracle:thin:@127.0.0.1:1521:XE");
+	    driverManagerDataSource.setUsername("COMANDA");
+	    driverManagerDataSource.setPassword("ROOT");
+	    return driverManagerDataSource;
 	}
-
 	@Bean
 	@Autowired
 	public SqlSessionFactory getSqlSessionFactory(DataSource dataSource) {
